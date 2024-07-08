@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static "main/css/index.css" %}">
+{% endblock %}
+
 {% block content %}
 <main>
     <nav class="nav">
@@ -49,7 +53,7 @@
         <div class="goods">
 
             <div class="item">
-                <a href="{% url "main:product" %}"><img class="item-img" src="{% static "" %}" alt="Item"height="200px"></a>
+                <a href="#"><img class="item-img" src="{% static "" %}" alt="Item"height="200px"></a>
                 <div class="item-info">
                     <h2>{{ name }} {{ price }} руб.</h2>
                     <img src="{% static "" %}" alt="Rank" width="150px">
