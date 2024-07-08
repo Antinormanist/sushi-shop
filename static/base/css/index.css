@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 75% 15%;
+    height: 100vh;
+    overflow: hidden;
+
+    /* SCROLL */
+    scrollbar-color: #ffefd5 #c9aa82;
+}
+.none {
+    display: none;
+}
+
+/* HEADER */
+
+header {
+    background-color: papayawhip;
+    display: flex;
+}
+
+.header-logo img {
+    height: 100%;
+}
+
+.header {
+    flex-grow: 1;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.burger {
+    height: 4rem;
+    display: none;
+}
+
+.menu-burger {
+    border: none;
+    border-radius: 10px;
+    background-color: burlywood;
+    height: 2rem;
+    width: 104px;
+    cursor: pointer;
+}
+
+.burger-container {
+    height: 200px;
+    position: relative;
+    top: 80px;
+    /* background-color: rgb(228, 149, 75); */
+    border-radius: 10px;
+}
+
+.burger-btn-bg {
+    background-color: rgb(228, 149, 75);
+}
+
+.menu {
+    display: none;
+}
+
+.menu-display {
+    display: block;
+}
+
+.burger-container .burger-li {
+    display: block;
+}
+
+.header a {
+    background-color: burlywood;
+    height: 50%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.header a:hover {
+    color: rgb(240, 239, 239);
+    text-decoration: underline;
+}
+
+.header-li {
+    text-align: center;
+    width: 100%;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: rgb(192, 135, 60);
+    display: flex;
+}
+
+.footer-logo {
+    height: 100%;
+}
+
+.footer {
+    list-style-type: none;
+}
+
+.footer-div {
+    background-color: papayawhip;
+    text-align: center;
+}
+
+.footer-li {
+    background-color: burlywood;
+    margin-top: 5px;
+    border-radius: 10px;
+    color: rgb(173, 99, 14);
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer-div h3 {
+    color: rgb(177, 154, 23);
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 510px) {
+    /* Do menu burger */
+    .burger {
+        display: block;
+    }
+
+    .header-li {
+        display: none;
+    }
+}

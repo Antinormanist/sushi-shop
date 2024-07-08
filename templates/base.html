@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "base/css/index.css" %}">
+    {% block styles %} {% endblock %}
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url "main:index" %}" class="header-logo"><img src="{% static "base/images/header-logo.png" %}" alt="Logo" width="150px"></a>
+        <ul class="header">
+            <div class="burger-container">
+                <div class="burger">
+                    <button class="menu-burger"><img src="../images/icons/menuBurger.png" alt="menu" width="24px" height="24px"></button>
+                </div>
+                <div class="menu">
+                    <a href="{% url "main:about" %}"><li class="header-li burger-li">About</li></a>
+                    <a href="license.txt" download=""><li class="header-li burger-li">License</li></a>
+                    <a href="#"><li class="header-li burger-li">Profile</li></a>
+                    <a href="#"><li class="header-li burger-li">Login</li></a>
+                    <a href="#"><li class="header-li burger-li">Register</li></a>
+                    <a href="#"><li class="header-li burger-li">Logout</li></a>
+                </div>
+            </div>
+            <a href="{% url "main:about" %}"><li class="header-li">About</li></a>
+            <a href="license.txt" download=""><li class="header-li">License</li></a>
+            <a href="#"><li class="header-li">Profile</li></a>
+            <a href="#"><li class="header-li">Login</li></a>
+            <a href="#"><li class="header-li">Register</li></a>
+            <a href="#"><li class="header-li">Logout</li></a>
+        </ul>
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <footer>
+        <a href="{% url "main:index" %}"><img class="footer-logo" src="{% static "base/images/footer-logo.png" %}" alt="Logo" width="150px"></a>
+        <div class="footer-div">
+            <h3>Отдельное спасибо:</h3>
+            <ul class="footer">
+                <li class="footer-li">CapybaraCorp</li>
+                <li class="footer-li">SushiMaker</li>
+                <a href="https://github.com/Antinormanist" target="_blank"><li class="footer-li">Antinormanist</li></a>
+                <li class="footer-li">Zekljtra</li>
+                <li class="footer-li">Вам</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="{% static "base/js/burger.js" %}"></script>
+</body>
+</html>
