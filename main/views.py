@@ -6,3 +6,17 @@ def index(request):
         'title': 'Home',
     }
     return render(request, 'main/index.html', context)
+
+
+def about(request):
+    context = {
+        'title': 'About',
+    }
+    return render(request, 'main/about.html', context)
+
+
+def product(request, product_slug):
+    context = {
+        'title': 'Product',
+    }
+    return render(request, 'main/product.html', context)

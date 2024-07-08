@@ -11,34 +11,34 @@
 </head>
 <body>
     <header>
-        <a href="./index.html" class="header-logo"><img src="{% static "base/images/header-logo.png" %}" alt="Logo" width="150px"></a>
+        <a href="{% url "main:index" %}" class="header-logo"><img src="{% static "base/images/header-logo.png" %}" alt="Logo" width="150px"></a>
         <ul class="header">
             <div class="burger-container">
                 <div class="burger">
                     <button class="menu-burger"><img src="../images/icons/menuBurger.png" alt="menu" width="24px" height="24px"></button>
                 </div>
                 <div class="menu">
-                    <a href="./about.html"><li class="header-li burger-li">About</li></a>
-                    <a href="../license.txt" download=""><li class="header-li burger-li">License</li></a>
-                    <a href="./profile.html"><li class="header-li burger-li">Profile</li></a>
-                    <a href="./login.html"><li class="header-li burger-li">Login</li></a>
-                    <a href="./register.html"><li class="header-li burger-li">Register</li></a>
-                    <a href="#"><li class="header-li burger-li">Logout</li></a>
+                    <a href="{% url "main:about" %}"><li class="header-li burger-li">About</li></a>
+                    <a href="license.txt" download=""><li class="header-li burger-li">License</li></a>
+                    <a href="{% url "user:profile" %}"><li class="header-li burger-li">Profile</li></a>
+                    <a href="{% url "user:login" %}"><li class="header-li burger-li">Login</li></a>
+                    <a href="{% url "user:register" %}"><li class="header-li burger-li">Register</li></a>
+                    <a href="{% url "user:logout" %}"><li class="header-li burger-li">Logout</li></a>
                 </div>
             </div>
-            <a href="./about.html"><li class="header-li">About</li></a>
-            <a href="../license.txt" download=""><li class="header-li">License</li></a>
-            <a href="./profile.html"><li class="header-li">Profile</li></a>
-            <a href="./login.html"><li class="header-li">Login</li></a>
-            <a href="./register.html"><li class="header-li">Register</li></a>
-            <a href="#"><li class="header-li">Logout</li></a>
+            <a href="{% url "main:about" %}"><li class="header-li">About</li></a>
+            <a href="license.txt" download=""><li class="header-li">License</li></a>
+            <a href="{% url "user:profile" %}"><li class="header-li">Profile</li></a>
+            <a href="{% url "user:login" %}"><li class="header-li">Login</li></a>
+            <a href="{% url "user:register" %}"><li class="header-li">Register</li></a>
+            <a href="{% url "user:logout" %}"><li class="header-li">Logout</li></a>
         </ul>
     </header>
 
     {% block content %} {% endblock %}
 
     <footer>
-        <a href="./index.html"><img class="footer-logo" src="{% static "base/images/footer-logo.png" %}" alt="Logo" width="150px"></a>
+        <a href="{% url "main:index" %}"><img class="footer-logo" src="{% static "base/images/footer-logo.png" %}" alt="Logo" width="150px"></a>
         <div class="footer-div">
             <h3>Отдельное спасибо:</h3>
             <ul class="footer">

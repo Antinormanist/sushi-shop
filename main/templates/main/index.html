@@ -1,5 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<h2>Test</h2>
+<main>
+    <nav class="nav">
+        <div class="filter cat-choice">
+            <h2>Category</h2>
+            <div class="cat-choice-cats">
+                <a href="#">Сет</a>
+                <a href="#">Набор</a>
+                <a href="#">Один вид</a>
+            </div>
+        </div>
+        <form>
+            <input type="hidden" value="nav">
+            <div class="filter">
+                <h2>Цена</h2>
+                <input type="radio" name="order-by-1" value="asc">От дешёвого к дорогому
+                <br>
+                <input type="radio" name="order-by-1" value="desc">От дорого к дешёвому
+            </div>
+            <div class="filter">
+                <h2>Количество</h2>
+                <input type="radio" name="order-by-2" value="asc">От меньшего к большому
+                <br>
+                <input type="radio" name="order-by-2" value="desc">От большого к меньшему
+            </div>
+            <div class="filter">
+                <h2>Рейтинг</h2>
+                <input type="radio" name="order-by-3" value="1">1
+                <br>
+                <input type="radio" name="order-by-3" value="2">2
+                <br>
+                <input type="radio" name="order-by-3" value="3">3
+                <br>
+                <input type="radio" name="order-by-3" value="4">4
+                <br>
+                <input type="radio" name="order-by-3" value="5">5
+            </div>
+            <div class="filter search">
+                <input type="text" name="search" placeholder="Search" class="search-input">
+            </div>
+            
+            <button class="filter-btn">Apply</button>
+        </form>
+    </nav>
+    <div class="main">
+        <div class="goods">
+
+            <div class="item">
+                <a href="{% url "main:product" %}"><img class="item-img" src="{% static "" %}" alt="Item"height="200px"></a>
+                <div class="item-info">
+                    <h2>{{ name }} {{ price }} руб.</h2>
+                    <img src="{% static "" %}" alt="Rank" width="150px">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 {% endblock %}
