@@ -1,9 +1,12 @@
 from django.shortcuts import render
 
+from .models import Sushi
+
 # Create your views here.
 def index(request):
     context = {
         'title': 'Home',
+        'sushi': Sushi.objects.all(),
     }
     return render(request, 'main/index.html', context)
 
