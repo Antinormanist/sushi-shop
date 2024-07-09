@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static "main/css/product.css" %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="product-header">
+            <div class="header-top">
+                <img class="product-img" src="" alt="Product">
+                <img class="product-rank" src="{% static "ranks/star-rate-4.png" %}" alt="Rank">
+                <h2 class="price">1799руб.</h2>
+                <div class="amount">
+                    <button class="minus">-</button>
+                    <p class="num">1</p>
+                    <button class="add-to-cart">Добавить</button>
+                    <button class="plus">+</button>
+                </div>
+            </div>
+            <h1>Набор капибары</h1>
+        </div>
+        <div class="description">
+            <p>Набор капибары - это набор суш, включающий в себя суши по мариански, картошку по вегетариански, омлет по американски, антинорманист по капибарски, фурри фембой по уиффански</p>
+        </div>
+        <div class="views">
+            <form class="comment-form">
+                <label class="label" for="comment">Напишите ваш отзыв</label>
+                <input type="text" name="comment" id="comment" value="Суши огонь">
+                <label class="rate" for="rate">Рейтинг</label>
+                <div class="rates">
+                    <div class="rate-item">
+                        <label for="rate-1">1</label>
+                        <input type="radio" name="rate" id="rate rate-1" value="1">
+                    </div>
+                    <div class="rate-item">
+                        <label for="rate-2">2</label>
+                        <input type="radio" name="rate" id="rate rate-2" value="2">
+                    </div>
+                    <div class="rate-item">
+                        <label for="rate-3">3</label>
+                        <input type="radio" name="rate" id="rate rate-3" value="3">
+                    </div>
+                    <div class="rate-item">
+                        <label for="rate-4">4</label>
+                        <input type="radio" checked name="rate" id="rate rate-4" value="4">
+                    </div>
+                    <div class="rate-item">
+                        <label for="rate-5">5</label>
+                        <input type="radio" name="rate" id="rate rate-5" value="5">
+                    </div>
+                </div>
+                <button class="btn">Отправить</button>
+            </form>
+            <button class="comment-read">Читать отзывы</button>
+            <div class="user-views none">
+                <div class="view">
+                    <h3>Капибарик1234567</h3>
+                    <img src="{% static "ranks/star-rate-1.png" %}" alt="rank">
+                    <p>Суши вообще отстой, причём тут капибары?</p>
+                </div>
+                <div class="pagination">
+                    <a class="disabled" href="#"><</a>
+                    <a class="current" href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="{% static "main/js/open-views.js" %}"></script>
+<script src="{% static "main/js/product-cart.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+/* MAIN */
+.img {
+    /* display: inline; */
+    width: 25%;
+    height: 50%;
+}
+
+main {
+    display: flex;
+    background-color: rgb(248, 218, 170);
+}
+
+.content {
+    background-color: burlywood;
+    width: 50%;
+    height: 100%;
+    align-self: flex-start;
+    /* justify-self: center; */
+    text-align: center;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content h1, .content h2 {
+    color: papayawhip
+}
+
+.content p {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: rgb(136, 89, 18)
+}
+
+@media screen and (max-width: 800px) {
+    .img {
+        display: none;
+    }
+
+    .content {
+        position: relative;
+        left: 25%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .content h2 {
+        font-size: 1.25em;
+    }
+}
