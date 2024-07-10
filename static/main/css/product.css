@@ -12,6 +12,8 @@ body {
     background-color: rgb(255, 250, 241);
     /* SCROLL */
     scrollbar-color: #ffefd5 #c9aa82;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 button {

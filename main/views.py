@@ -43,5 +43,6 @@ def about(request):
 def product(request, product_slug):
     context = {
         'title': 'Product',
+        'product': Sushi.objects.get(slug=product_slug),
     }
     return render(request, 'main/product.html', context)
