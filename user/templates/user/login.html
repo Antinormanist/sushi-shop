@@ -11,6 +11,7 @@
     <div class="container">
         <div class="form">
             <form method="post">
+                {% csrf_token %}
                 <label class="username" for="username">Name</label>
                 <input type="text" name="username" id="username">
                 <label class="password1" for="password1">Password</label>

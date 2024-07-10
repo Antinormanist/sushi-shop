@@ -11,12 +11,17 @@
     <div class="container">
         <div class="form">
             <form method="post">
-                <label class="name" for="name">Name</label>
+                {% csrf_token %}
+                {% comment %} <label class="name" for="name">Name</label>
                 <input type="text" name="name" id="name">
                 <label class="password1" for="password1">Password</label>
                 <input type="password" name="password1" id="password1">
                 <label class="password2" for="password2">Repeat password</label>
-                <input type="password" name="password2" id="password2">
+                <input type="password" name="password2" id="password2"> {% endcomment %}
+                {% for input in form %}
+                {{ input.label }}
+                {{ input }}
+                {% endfor %}
                 <button class="sign">Register</button>
             </form>
         </div>
