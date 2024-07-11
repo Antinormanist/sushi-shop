@@ -11,9 +11,9 @@
     <div class="container">
         <div class="product-header">
             <div class="header-top">
-                <img class="product-img" src="" alt="Product">
-                <img class="product-rank" src="{% static "ranks/star-rate-4.png" %}" alt="Rank">
-                <h2 class="price">1799руб.</h2>
+                <img class="product-img" src="{{ product.image.url }}" alt="Product">
+                <img class="product-rank" src="{% static "ranks/star-rate-" %}{{ product.rate }}.png" alt="Rank">
+                <h2 class="price">{{ product.price }}руб.</h2>
                 <div class="amount">
                     <button class="minus">-</button>
                     <p class="num">1</p>
@@ -21,10 +21,10 @@
                     <button class="plus">+</button>
                 </div>
             </div>
-            <h1>Набор капибары</h1>
+            <h1>{{ product.name }}</h1>
         </div>
         <div class="description">
-            <p>Набор капибары - это набор суш, включающий в себя суши по мариански, картошку по вегетариански, омлет по американски, антинорманист по капибарски, фурри фембой по уиффански</p>
+            <p>{{ product.description }}</p>
         </div>
         <div class="views">
             <form class="comment-form">
