@@ -1,0 +1,172 @@
+/* MAIN */
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.change-form {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: repeat(12, 2.5rem)
+}
+
+.change-sumbit {
+    grid-row-start: 12;
+    border-radius: 10px;
+    border: 2px solid rgb(141, 103, 52);
+    background-color: papayawhip;
+    color: rgb(206, 167, 117);
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.container {
+    background-color: rgb(218, 195, 167);
+    width: 50%;
+    height: 100%;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 40% 60%;
+}
+
+.avatar {
+    width: 70%;
+    height: 250px;
+    border: 2px solid rgb(187, 144, 88);
+    border-radius: 10px;
+}
+
+.change-info {
+    margin-top: 2.5rem;
+    border-radius: 10px;
+    border: 2px solid rgb(187, 144, 88);
+    color: papayawhip;
+    background-color: rgb(204, 180, 148);
+    font-size: 1.5rem;
+    padding: 0 10px;
+}
+
+.change-info:hover {
+    text-decoration: underline;
+}
+
+.go-to-cart {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    font-size: 2rem;
+    background-color: rgb(204, 180, 148);
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid rgb(187, 144, 88);
+    color: papayawhip;
+    text-decoration: none;
+}
+
+.go-to-cart:hover {
+    text-decoration: underline;
+}
+
+.info {
+    background-color: rgb(182, 153, 112);
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.info-text {
+    font-size: 1.5rem;
+    color: papayawhip;
+    font-weight: bold;
+    border-bottom: 2px solid papayawhip;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.info-text:hover {
+    color: rgb(212, 188, 149)
+}
+
+input {
+    border-radius: 10px;
+    border: 2px solid rgb(141, 103, 52);
+    background-color: papayawhip;
+}
+
+.overlay {
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(128, 128, 128);
+    opacity: .7;
+    display: none;
+}
+
+.change-div {
+    z-index: 3;
+    display: none;
+    position: fixed;
+    left: 37.5%;
+    top: 25%;
+    width: 25%;
+    height: 60%;
+    background-color: rgb(185, 155, 115);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.display {
+    display: block;
+}
+
+@media screen and (max-width: 1024px) {
+    .avatar {
+        display: none;
+    }
+
+    .container {
+        grid-template-columns: 15% 70% 15%;
+    }
+
+    .info {
+        grid-column-start: 2;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 75%;
+    }
+
+    .change-div {
+        width: 50%;
+        left: 25%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .go-to-cart{
+        font-size: 1.5rem;
+    }
+
+    .change-div {
+        width: 75%;
+        left: 12.5%;
+    }
+}

@@ -20,8 +20,11 @@
                 <div class="menu">
                     <a href="{% url "main:about" %}"><li class="header-li burger-li">About</li></a>
                     <a href="license.txt" download=""><li class="header-li burger-li">License</li></a>
+                    {% if user.is_staff %}
+                    <a href="{% url "admin:index" %}"><li class="header-li burger-li">Admin Panel</li></a>
+                    {% endif %}
                     {% if user.is_authenticated %}
-                    <a href="#"><li class="header-li burger-li">Profile</li></a>
+                    <a href="{% url "user:profile" %}"><li class="header-li burger-li">Profile</li></a>
                     <a href="{% url "user:logout" %}"><li class="header-li burger-li">Logout</li></a>
                     {% else %}
                     <a href="{% url "user:login" %}"><li class="header-li burger-li">Login</li></a>
@@ -32,7 +35,7 @@
             <a href="{% url "main:about" %}"><li class="header-li">About</li></a>
             <a href="license.txt" download=""><li class="header-li">License</li></a>
             {% if user.is_authenticated %}
-            <a href="#"><li class="header-li">Profile</li></a>
+            <a href="{% url "user:profile" %}"><li class="header-li">Profile</li></a>
             <a href="{% url "user:logout" %}"><li class="header-li">Logout</li></a>
             {% else %}
             <a href="{% url "user:login" %}"><li class="header-li">Login</li></a>
@@ -43,6 +46,7 @@
 
     {% block content %} {% endblock %}
 
+    {% if not no_footer %}
     <footer>
         <a href="{% url "main:index" %}"><img class="footer-logo" src="{% static "base/images/footer-logo.png" %}" alt="Logo" width="150px"></a>
         <div class="footer-div">
@@ -56,6 +60,7 @@
             </ul>
         </div>
     </footer>
+    {% endif %}
 
     <script src="{% static "base/js/burger.js" %}"></script>
 </body>
