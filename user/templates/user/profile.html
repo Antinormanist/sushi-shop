@@ -11,14 +11,6 @@
     <div class="change-div">
         <form method="post" class="change-form">
             {% csrf_token %}
-            {% comment %} <label for="last-name">Фамилия</label>
-            <input type="text" name="last-name" id="last-name">
-            <label for="first-name">Имя</label>
-            <input type="text" name="first-name" id="first-name">
-            <label for="patronymic">Отчество</label>
-            <input type="text" name="patronymic" id="patronymic">
-            <label for="address">Адрес</label>
-            <input type="text" name="address" isd="address"> {% endcomment %}
             {% for input in form %}
             {{ input.label }}
             {{ input }}
@@ -28,7 +20,19 @@
     </div>
 <main>
     <div class="container">
-        <img class="avatar" src="{% static "user/images/testAvatar.png" %}" alt="Avatar">
+        <div class="image-div">
+            {% if user.image %}
+            <img class="avatar" src="{{ user.image.url }}" alt="Avatar">
+            {% else %}
+            <img class="avatar" src="{% static "user/images/testAvatar.png" %}" alt="Avatar">
+            {% endif %}
+            <form method="post" enctype="multipart/form-data" class="image-form">
+                {% csrf_token %}
+                {% comment %} <input type="file" name="img" id=""> {% endcomment %}
+                {{ form_image }}
+                <button>Изменить аватар</button>
+            </form>
+        </div>
         <div class="info">
             <h3 class="info-text">{{ user.profile.last_name }}</h3>
             <h3 class="info-text">{{ user.profile.first_name }}</h3>
@@ -38,7 +42,7 @@
             <!-- Do button to change user information -->
             <button class="change-info">Изменить информацию</button>
         </div>
-        <a class="go-to-cart" href="./cart.html">Перейти в корзину</a>
+        <a class="go-to-cart" href="{% url "cart" %}">Перейти в корзину</a>
     </div>
 </main>
 

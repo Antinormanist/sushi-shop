@@ -31,3 +31,9 @@ class ChangeProfileForm(forms.ModelForm):
         elif len(phone) < 11:
             raise forms.ValidationError('Номер телефона слишком короткий')
         return phone
+    
+    
+class ChangeAvatar(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['image']

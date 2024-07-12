@@ -3,7 +3,7 @@ from django.db.models import Q
 
 from .models import Sushi
 from .utils import q_search
-
+from user.models import Commentary
 # Create your views here.
 def index(request, sushi_type=None):
     
@@ -41,8 +41,19 @@ def about(request):
 
 
 def product(request, product_slug):
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        rate = request.POST.get('rate')
+        if comment and rate:
+            Commentary.objects.create(
+                sushi=Sushi.objects.get(slug=product_slug),
+                user=request.user,
+                comment=comment,
+                rate=int(rate),
+            )
     context = {
         'title': 'Product',
         'product': Sushi.objects.get(slug=product_slug),
+        'commentaries': Commentary.objects.filter(sushi__slug=product_slug)
     }
     return render(request, 'main/product.html', context)
