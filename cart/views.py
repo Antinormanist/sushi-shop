@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 from .models import Cart
 from main.models import Sushi
 # Create your views here.
+@login_required
 def cart(request):
+    if request.method == 'GET' and (product_id := request.GET.get('delete')):
+        Cart.objects.filter(id=product_id).delete()
     context = {
         'title': 'Cart',
         'products': Cart.objects.filter(user=request.user),
@@ -13,6 +17,7 @@ def cart(request):
     return render(request, 'cart/cart.html', context)
 
 
+@login_required
 def order_make(request):
     if request.method == 'POST':
         name = request.POST.get('sushiName')
