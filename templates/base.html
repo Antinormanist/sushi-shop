@@ -34,6 +34,9 @@
             </div>
             <a href="{% url "main:about" %}"><li class="header-li">About</li></a>
             <a href="license.txt" download=""><li class="header-li">License</li></a>
+            {% if user.is_staff %}
+            <a href="{% url "admin:index" %}"><li class="header-li burger-li">Admin Panel</li></a>
+            {% endif %}
             {% if user.is_authenticated %}
             <a href="{% url "user:profile" %}"><li class="header-li">Profile</li></a>
             <a href="{% url "user:logout" %}"><li class="header-li">Logout</li></a>
