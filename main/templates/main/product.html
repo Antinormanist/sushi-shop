@@ -8,6 +8,10 @@
 
 {% block content %}
 <main>
+    {% comment %} FOR JAVASCRIPT {% endcomment %}
+    <input type="hidden" class="get-url" value='{% url "order_make" %}'>
+    <input type="hidden" class="get-token" value='{{ csrf_token }}'>
+    {% comment %} HTML {% endcomment %}
     <div class="container">
         <div class="product-header">
             <div class="header-top">
@@ -21,10 +25,10 @@
                     <button class="plus">+</button>
                 </div>
             </div>
-            <h1>{{ product.name }}</h1>
+            <h1 class="product-name">{{ product.name }}</h1>
         </div>
         <div class="description">
-            <p>{{ product.description }}</p>
+            <p class="product-description">{{ product.description }}</p>
         </div>
         <div class="views">
             <form class="comment-form">
@@ -74,6 +78,51 @@
     </div>
 </main>
 
+<script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
 <script src="{% static "main/js/open-views.js" %}"></script>
-<script src="{% static "main/js/product-cart.js" %}"></script>
+
+<script>
+    const minus = document.querySelector('.minus')
+const plus = document.querySelector('.plus')
+const amount = document.querySelector('.num')
+const priceOrigin = parseInt(document.querySelector('.price').innerText.split('р')[0])
+const price = document.querySelector('.price')
+const bttn = document.querySelector('.add-to-cart')
+
+window.addEventListener('click', function(event) {
+    if (event.target === minus && parseInt(amount.innerText) > 1) {
+        --amount.innerText
+    } else if (event.target === plus && parseInt(amount.innerText) < 999) {
+        ++amount.innerText
+    } else if (event.target === bttn) {
+        const name = document.querySelector('.product-name')
+        const description = document.querySelector('.product-description')
+        
+        $.ajax({
+            url: '{% url "order_make" %}',
+            type: 'POST',
+            data: {
+                'sushiName': name.innerText,
+                'sushiDescription': description.innerText, 
+                'amount': amount.innerText,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            success: function() {
+                console.log('SUCCESS')
+            },
+            error: function() {
+                console.log("ERROR")
+                console.log('{% url "order_make" %}')
+            }
+        })
+
+        amount.innerText = 1
+    }
+
+    price.innerText = priceOrigin * parseInt(amount.innerText) + 'руб.'
+})
+</script>
 {% endblock %}
