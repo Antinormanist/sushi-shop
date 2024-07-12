@@ -1,1 +1,32 @@
-Hello there!
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href={% static "cart/css/cart.css" %}>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="cart">
+            {% for product in products %}
+            <div class="item">
+                <img class="product-img" src="{{ product.sushi.image.url }}" alt="product">
+                <div class="price-amount">
+                    <h3>{{ product.sushi.price }} руб.</h3>
+                </div>
+                <h2>{{ product.amount }} шт.</h2>
+                <h2 class="item-name">{{ product.sushi.name }}</h2>
+            </div>
+            {% endfor %}     
+        </div>
+        <form class="order" method="post">
+            <h2 class="attention">Внимание! Это пет проэкт, но никак не реальный продукт, поэтому не вводите собственные данные карточки. В номере карты пишите: 4242 4242 4242 4242, а остальное наугад</h2>
+            <h3>Итого: {{ total_price }} руб.</h3>
+            <input type="hidden" name="create-order" id="" value="create">
+            <button class="order-btn">Оформить заказ</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
