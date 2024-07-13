@@ -44,7 +44,7 @@
             <button class="change-info">Изменить информацию</button>
         </div>
         <a class="go-to-cart" href="{% url "cart" %}">Перейти в корзину</a>
-        <form method="post">
+        <form method="post" style="height: 50%; align-self: flex-end">
             {% csrf_token %}
             <input type="hidden" name="delete-acc" value="1">
             <button style="position:absolute;top:500px;left:500px;background-color:papayawhip;border:1px solid black;border-radius: 10px;">Удалить аккаунт</button>
