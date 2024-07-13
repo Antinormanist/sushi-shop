@@ -81,11 +81,32 @@
                 </div>
                 {% endfor %}
                 <div class="pagination">
+                    {% if commentaries.has_previous %}
+                    <a href="?page={{ commentaries.previous_page_number }}"><</a>
+                    {% else %}
                     <a class="disabled" href="#"><</a>
-                    <a class="current" href="#">1</a>
+                    {% endif %}
+
+
+                    {% comment %} <a class="current" href="#">1</a>
                     <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">></a>
+                    <a href="#">3</a> {% endcomment %}
+                    {% for p in pages.page_range %}
+                        {% if p == commentaries.number|add:-1 or p == commentaries.number|add:1 or p == commentaries.number %}
+                            {% if p == commentaries.number%}
+                            <a class="current" href="?page={{ p }}">{{ p }}</a>
+                            {% else %}
+                            <a href="?page={{ p }}">{{ p }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+
+                    {% if commentaries.has_next %}
+                    <a href="?page={{ commentaries.next_page_number }}">></a>
+                    {% else %}
+                    <a class="disabled" href="#">></a>
+                    {% endif %}
                 </div>
             </div>
         </div>

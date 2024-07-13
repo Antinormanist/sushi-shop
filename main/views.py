@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Q
+from django.core.paginator import Paginator
 
 from .models import Sushi
 from .utils import q_search
@@ -54,9 +54,17 @@ def product(request, product_slug):
                     comment=comment,
                     rate=int(rate),
                 )
+    if page := request.GET.get('page'):
+        page = int(page)
+    else:
+        page = 1
+    paginator = Paginator(Commentary.objects.filter(sushi__slug=product_slug), 5)
+    p = paginator.page(page)
+                
     context = {
         'title': 'Product',
         'product': Sushi.objects.get(slug=product_slug),
-        'commentaries': Commentary.objects.filter(sushi__slug=product_slug)
+        'commentaries': p,
+        'pages': paginator,
     }
     return render(request, 'main/product.html', context)
