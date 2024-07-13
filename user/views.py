@@ -8,9 +8,12 @@ from .models import Profile, User
 @login_required(login_url='/user/login')
 def profile(request):
     if request.method == 'POST':
-        form_image = ChangeAvatar(request.POST, request.FILES, instance=request.user)
-        if form_image.is_valid():
-            form_image.save()
+        if request.POST.get('imka'):
+            form_image = ChangeAvatar(request.POST, request.FILES, instance=request.user)
+            if form_image.is_valid():
+                form_image.save()
+        elif request.POST.get('delete-acc'):
+            User.objects.filter(id=request.user.id).delete()
         else:
             form = ChangeProfileForm(request.POST)
             if form.is_valid():

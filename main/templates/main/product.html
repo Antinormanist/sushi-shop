@@ -63,11 +63,18 @@
             <button class="comment-read">Читать отзывы</button>
             <div class="user-views none">
                 {% for commentary in commentaries %}
-                <div class="view">
+                <div style="align-items: center" class="view">
                     {% if commentary.user %}
                     <h3>{{ commentary.user.username }}</h3>
                     {% else %}
                     <h3>Deleted user</h3>
+                    {% endif %}
+                    {% if commentary.user == user %}
+                    <form style="width: 100%" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete-comment" value="{{ commentary.id }}">
+                        <button style="width:75%; border: 1px solid black; border-radius: 10px; background-color: papayawhip">Delete</button>
+                    </form>
                     {% endif %}
                     <img src="{% static "ranks/star-rate-" %}{{ commentary.rate }}.png" alt="rank">
                     <p>{{ commentary.comment }}</p>

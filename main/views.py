@@ -42,15 +42,18 @@ def about(request):
 
 def product(request, product_slug):
     if request.method == 'POST':
-        comment = request.POST.get('comment')
-        rate = request.POST.get('rate')
-        if comment and rate:
-            Commentary.objects.create(
-                sushi=Sushi.objects.get(slug=product_slug),
-                user=request.user,
-                comment=comment,
-                rate=int(rate),
-            )
+        if id := request.POST.get('delete-comment'):
+            Commentary.objects.filter(id=int(id)).delete()
+        else:
+            comment = request.POST.get('comment')
+            rate = request.POST.get('rate')
+            if comment and rate:
+                Commentary.objects.create(
+                    sushi=Sushi.objects.get(slug=product_slug),
+                    user=request.user,
+                    comment=comment,
+                    rate=int(rate),
+                )
     context = {
         'title': 'Product',
         'product': Sushi.objects.get(slug=product_slug),
