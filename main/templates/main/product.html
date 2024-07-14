@@ -63,22 +63,50 @@
             <button class="comment-read">Читать отзывы</button>
             <div class="user-views none">
                 {% for commentary in commentaries %}
-                <div class="view">
+                <div style="align-items: center" class="view">
                     {% if commentary.user %}
                     <h3>{{ commentary.user.username }}</h3>
                     {% else %}
                     <h3>Deleted user</h3>
+                    {% endif %}
+                    {% if commentary.user == user %}
+                    <form style="width: 100%" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete-comment" value="{{ commentary.id }}">
+                        <button style="width:75%; border: 1px solid black; border-radius: 10px; background-color: papayawhip">Delete</button>
+                    </form>
                     {% endif %}
                     <img src="{% static "ranks/star-rate-" %}{{ commentary.rate }}.png" alt="rank">
                     <p>{{ commentary.comment }}</p>
                 </div>
                 {% endfor %}
                 <div class="pagination">
+                    {% if commentaries.has_previous %}
+                    <a href="?page={{ commentaries.previous_page_number }}"><</a>
+                    {% else %}
                     <a class="disabled" href="#"><</a>
-                    <a class="current" href="#">1</a>
+                    {% endif %}
+
+
+                    {% comment %} <a class="current" href="#">1</a>
                     <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">></a>
+                    <a href="#">3</a> {% endcomment %}
+                    {% for p in pages.page_range %}
+                        {% if p == commentaries.number|add:-1 or p == commentaries.number|add:1 or p == commentaries.number %}
+                            {% if p == commentaries.number%}
+                            <a class="current" href="?page={{ p }}">{{ p }}</a>
+                            {% else %}
+                            <a href="?page={{ p }}">{{ p }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+
+                    {% if commentaries.has_next %}
+                    <a href="?page={{ commentaries.next_page_number }}">></a>
+                    {% else %}
+                    <a class="disabled" href="#">></a>
+                    {% endif %}
                 </div>
             </div>
         </div>
